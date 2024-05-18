@@ -5,7 +5,9 @@ import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.SimpleChannelInboundHandler
 import org.slf4j.LoggerFactory
 import org.slf4j.LoggerFactory.getILoggerFactory
+import org.springframework.stereotype.Component
 
+@Component
 class EchoClientHandler: SimpleChannelInboundHandler<ByteBuf>() {
     private val logger = getILoggerFactory().getLogger(EchoClientHandler::class.java.name)
     override fun channelRead0(p0: ChannelHandlerContext?, p1: ByteBuf?) {

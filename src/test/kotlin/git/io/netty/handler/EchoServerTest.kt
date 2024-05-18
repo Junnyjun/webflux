@@ -22,10 +22,11 @@ class EchoServerTest{
     ){
         fun start(){
             val serverHandler = EchoServerHandler()
+            val echoClient = EchoClientHandler()
 
             val echoServerHandler = object : ChannelInitializer<SocketChannel>(){
                 override fun initChannel(p0: SocketChannel) {
-                    p0.pipeline().addLast(serverHandler)
+                    p0.pipeline().addLast(echoClient)
                 }
             }
             val group = NioEventLoopGroup()
