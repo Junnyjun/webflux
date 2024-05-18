@@ -1,6 +1,7 @@
 package git.io.netty.handler
 
 import io.netty.buffer.ByteBuf
+import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.SimpleChannelInboundHandler
 import org.slf4j.LoggerFactory
@@ -15,7 +16,8 @@ class EchoClientHandler: SimpleChannelInboundHandler<ByteBuf>() {
     }
 
     override fun channelActive(ctx: ChannelHandlerContext) {
-        ctx.writeAndFlush("Hello, World!")
+        logger.info("[Echo] Connected to server")
+        ctx.writeAndFlush(Unpooled.copiedBuffer("Hello, World!".toByteArray()))
     }
 
 
