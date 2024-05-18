@@ -1,7 +1,10 @@
 package git.io.netty.handler
 
 import io.netty.bootstrap.ServerBootstrap
+import io.netty.channel.ChannelHandlerContext
+import io.netty.channel.ChannelInitializer
 import io.netty.channel.nio.NioEventLoopGroup
+import io.netty.channel.socket.SocketChannel
 import io.netty.channel.socket.nio.NioServerSocketChannel
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
@@ -18,7 +21,13 @@ class EchoServerTest{
         private val port: Int,
     ){
         fun start(){
-            val echoServerHandler = EchoServerHandler()
+            val serverHandler = EchoServerHandler()
+
+            val echoServerHandler = object : ChannelInitializer<SocketChannel>(){
+                override fun initChannel(p0: SocketChannel) {
+                    p0.pipeline().addLast(serverHandler)
+                }
+            }
             val group = NioEventLoopGroup()
 
             val serverBootstrap = ServerBootstrap()
