@@ -9,8 +9,9 @@ import org.springframework.boot.runApplication
 class NettyApplication
 
 fun main(args: Array<String>) {
-    SpringApplicationBuilder()
+    val run = SpringApplicationBuilder(NettyApplication::class.java)
         .web(WebApplicationType.NONE)
         .run(*args)
+
 
 }

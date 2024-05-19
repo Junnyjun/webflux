@@ -4,11 +4,11 @@ import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelFutureListener.CLOSE
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.ChannelInboundHandlerAdapter
-import org.apache.logging.slf4j.SLF4JLogger
 import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.EnableAspectJAutoProxy
 
-@Configuration
+@Configuration(proxyBeanMethods = false)
 class EchoServerHandler : ChannelInboundHandlerAdapter() {
     private val logger =  LoggerFactory.getILoggerFactory().getLogger(EchoServerHandler::class.java.name)
 
