@@ -22,7 +22,7 @@ class EchoServerTest {
         val serverBootstrap = Bootstrap()
             .group(group)
             .channel(NioSocketChannel::class.java)
-            .remoteAddress("localhost", 8080)
+            .remoteAddress("localhost", 28080)
             .handler(object : ChannelInitializer<SocketChannel>() {
                 override fun initChannel(ch: SocketChannel) {
                     ch.pipeline().addLast(echoClientHandler)
@@ -44,4 +44,4 @@ class EchoServerTest {
             ctx.writeAndFlush(Unpooled.copiedBuffer("Hello, World!".toByteArray()))
         }
     }
-}
+};

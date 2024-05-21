@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class EchoServer (
-    @Value("\${netty.port:8080}")
+    @Value("\${netty.port:28080}")
     private val port: Int,
     private val echoServerHandler: EchoServerHandler,
 ) {
@@ -29,7 +29,7 @@ class EchoServer (
             .channel(NioServerSocketChannel::class.java)
             .localAddress(port)
             .childHandler(echoServerHandler)
-            .also { it.bind() }
+            .also { it.bind().sync() }
     }
 
     @PreDestroy

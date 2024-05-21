@@ -7,8 +7,9 @@ import io.netty.channel.ChannelInboundHandlerAdapter
 import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.EnableAspectJAutoProxy
+import org.springframework.stereotype.Component
 
-@Configuration(proxyBeanMethods = false)
+@Component
 class EchoServerHandler : ChannelInboundHandlerAdapter() {
     private val logger =  LoggerFactory.getILoggerFactory().getLogger(EchoServerHandler::class.java.name)
 
@@ -22,5 +23,7 @@ class EchoServerHandler : ChannelInboundHandlerAdapter() {
             .addListener(CLOSE)
     }
 
-
+    override fun channelActive(ctx: ChannelHandlerContext) {
+        logger.info("[Echo] Connected to client")
+    }
 }
