@@ -1,4 +1,4 @@
-package git.io.netty.handler
+package git.io.netty.echo
 
 import io.netty.bootstrap.Bootstrap
 import io.netty.buffer.ByteBuf
@@ -8,10 +8,10 @@ import io.netty.channel.ChannelInitializer
 import io.netty.channel.SimpleChannelInboundHandler
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.SocketChannel
-import io.netty.channel.socket.nio.NioServerSocketChannel
 import io.netty.channel.socket.nio.NioSocketChannel
 import org.junit.jupiter.api.Test
 import org.slf4j.LoggerFactory.getILoggerFactory
+import java.nio.charset.Charset
 
 class EchoServerTest {
 
@@ -36,7 +36,7 @@ class EchoServerTest {
         private val logger = getILoggerFactory().getLogger(EchoClientHandler::class.java.name)
 
         override fun channelRead0(p0: ChannelHandlerContext?, p1: ByteBuf?) {
-            logger.info("[Echo] Received: $p1")
+            logger.info("[Echo] Received: ${p1?.toString(Charset.defaultCharset())}")
         }
 
         override fun channelActive(ctx: ChannelHandlerContext) {

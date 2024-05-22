@@ -1,10 +1,9 @@
-package git.io.netty.handler
+package git.io.netty.echo.server
 
+import git.io.netty.echo.handler.EchoServerHandler
 import io.netty.bootstrap.ServerBootstrap
-import io.netty.channel.ChannelFuture
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.nio.NioServerSocketChannel
-import jakarta.annotation.PostConstruct
 import jakarta.annotation.PreDestroy
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
