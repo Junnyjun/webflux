@@ -55,6 +55,9 @@ class ByteBufferTest {
         println("Discard After writableBytes: ${pooledBuffer.writableBytes()}")
         println("Discard After readableBytes: ${pooledBuffer.readableBytes()}")
 
+        val copy = pooledBuffer.copy()
+        println(copy.toString(io.netty.util.CharsetUtil.UTF_8))
+
         println(pooledBuffer.toString(io.netty.util.CharsetUtil.UTF_8))
         pooledBuffer.release()
     }
